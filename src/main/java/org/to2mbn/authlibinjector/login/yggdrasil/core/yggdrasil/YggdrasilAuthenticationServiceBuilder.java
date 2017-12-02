@@ -1,0 +1,31 @@
+package org.to2mbn.authlibinjector.login.yggdrasil.core.yggdrasil;
+
+import org.to2mbn.authlibinjector.login.yggdrasil.core.Agent;
+import org.to2mbn.authlibinjector.login.yggdrasil.core.AuthenticationService;
+
+public class YggdrasilAuthenticationServiceBuilder extends AbstractYggdrasilServiceBuilder<AuthenticationService> {
+
+	public static YggdrasilAuthenticationServiceBuilder create() {
+		return new YggdrasilAuthenticationServiceBuilder();
+	}
+
+	public static AuthenticationService buildDefault() {
+		return create().build();
+	}
+
+	protected Agent agent;
+
+	public YggdrasilAuthenticationServiceBuilder agent(Agent agent) {
+		this.agent = agent;
+		return this;
+	}
+
+	public AuthenticationService build() {
+		return new YggdrasilAuthenticationService(buildHttpRequester(), buildPropertiesDeserializer(), buildAPIProvider(), buildAgent());
+	}
+
+	protected Agent buildAgent() {
+		return agent == null ? Agent.MINECRAFT : agent;
+	}
+
+}

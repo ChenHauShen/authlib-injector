@@ -1,0 +1,27 @@
+package org.to2mbn.authlibinjector.login.yggdrasil.core.yggdrasil;
+
+import org.to2mbn.authlibinjector.internal.org.json.JSONObject;
+import org.to2mbn.authlibinjector.login.yggdrasil.core.GameProfile;
+import org.to2mbn.authlibinjector.util.HttpRequester;
+import org.to2mbn.authlibinjector.util.UUIDUtils;
+
+abstract class AbstractYggdrasilService extends AbstractClientService {
+
+	protected final PropertiesDeserializer propertiesDeserializer;
+	protected final YggdrasilAPIProvider api;
+
+	public AbstractYggdrasilService(HttpRequester requester, PropertiesDeserializer propertiesDeserializer, YggdrasilAPIProvider api) {
+		super(requester);
+		this.propertiesDeserializer = propertiesDeserializer;
+		this.api = api;
+	}
+
+	protected GameProfile parseGameProfile(JSONObject json) {
+		if (json == null) {
+			return null;
+		}
+
+		return new GameProfile(UUIDUtils.toUUID(json.getString("id")), json.getString("name"));
+	}
+
+}
