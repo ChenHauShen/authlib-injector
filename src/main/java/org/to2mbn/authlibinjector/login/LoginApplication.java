@@ -4,6 +4,7 @@ import static java.util.Optional.empty;
 import java.awt.GraphicsEnvironment;
 import java.util.Optional;
 import org.to2mbn.authlibinjector.InjectorConfig;
+import javafx.embed.swing.JFXPanel;
 
 public class LoginApplication {
 
@@ -17,6 +18,8 @@ public class LoginApplication {
 	}
 
 	public static Optional<InjectorConfig> launchAndBlock() {
+		new JFXPanel(); // init JavaFX
+
 		// TODO
 		return empty();
 	}

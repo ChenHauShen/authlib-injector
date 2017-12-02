@@ -20,6 +20,7 @@ public class YggdrasilAuthenticationServiceBuilder extends AbstractYggdrasilServ
 		return this;
 	}
 
+	@Override
 	public AuthenticationService build() {
 		return new YggdrasilAuthenticationService(buildHttpRequester(), buildPropertiesDeserializer(), buildAPIProvider(), buildAgent());
 	}

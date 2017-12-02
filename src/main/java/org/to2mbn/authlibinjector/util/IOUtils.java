@@ -27,6 +27,10 @@ public final class IOUtils {
 		return new JSONObject(new String(data, UTF_8));
 	}
 
+	public static JSONObject asJson(String data) throws JSONException {
+		return new JSONObject(data);
+	}
+
 	private IOUtils() {}
 
 }
